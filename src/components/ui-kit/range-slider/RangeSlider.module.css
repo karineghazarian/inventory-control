@@ -1,0 +1,83 @@
+ .wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 40px calc(16px / 2);
+    padding-top: 1.6rem;
+    height: calc(16px + 1.6rem);
+  }
+  
+  .inputWrapper {
+    width: calc(100% + 16px);
+    margin: 0 calc(16px / -2);
+    position: absolute;
+    height: 16px;
+  }
+  
+  .controlWrapper {
+    width: 100%;
+    position: absolute;
+    height: 16px;
+  }
+  
+  .input {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    height: 100%;
+    opacity: 0;
+    z-index: 3;
+    padding: 0;
+  }
+
+  .input::-moz-range-thumb:active {
+    cursor: grabbing;
+  }
+  .input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+            appearance: none;
+    pointer-events: all;
+    width: 16px;
+    height: 16px;
+    border-radius: 0px;
+    border: 0 none;
+    cursor: -webkit-grab;
+    cursor: grab;
+    background-color: red;
+  }
+  .input::-webkit-slider-thumb:active {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+  }
+
+  .rail {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    border-radius: 3px;
+    background: lightgrey;
+  }
+  
+  .innerRail {
+    position: absolute;
+    height: 100%;
+    background: hotpink;
+    opacity: 0.5;
+  }
+  
+  .control {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    background: hotpink;
+    top: 50%;
+    margin-left: calc(16px / -2);
+    transform: translate3d(0, -50%, 0);
+    z-index: 2;
+  }
