@@ -1,11 +1,13 @@
+import styles from "./Table.module.css";
+
 const Table = ({columns=[], rows=[]}) => {
     return (
-    <table>
+    <table className={styles.table}>
         <thead>
-            <tr>
+            <tr className={styles.tr}>
                 {
                     columns.map(column => (
-                        <th key={column}>{column}</th>
+                        <th key={column} className={styles.th}>{column}</th>
                     ))
                 }
             </tr>
@@ -13,7 +15,7 @@ const Table = ({columns=[], rows=[]}) => {
         <tbody>
         {
             rows.map(row => (
-                <tr key={row.id}>
+                <tr key={row.id} className={styles.tr}>
                     {
                         columns.map(column => {
                             const cellValue = row[column];

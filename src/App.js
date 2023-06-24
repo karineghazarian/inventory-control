@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <CreateProduct />
-      <Table columns={['name', 'price', 'quantity', '']} rows={products.map(product => ({
+      <Table columns={['name', 'price', 'quantity', 'actions']} rows={products.map(product => ({
         ...product,
-        '': () => <>
+        'actions': () => <>
           <div>edit</div>
           <div>delete</div>
         </>
