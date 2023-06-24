@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./RangeSlider.module.css";
 
 
-const RangeSlider = ({ min, max, value, step, onChange }) => {
+const RangeSlider = ({ min, max, value, step, onChange, label, className }) => {
 
   const [minValue, setMinValue] = useState(value ? value.min : min);
   const [maxValue, setMaxValue] = useState(value ? value.max : max);
@@ -32,7 +32,8 @@ const RangeSlider = ({ min, max, value, step, onChange }) => {
   const maxPos = ((maxValue - min) / (max - min)) * 100;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${className || ''}`}>
+      <div className={styles.label}>{label}</div>
       <div className={styles.inputWrapper}>
         <input
           className={styles.input}

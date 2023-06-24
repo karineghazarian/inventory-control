@@ -8,6 +8,7 @@
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    color: rgb(114, 113, 113);
   }
   
   .tr:nth-child(even) {

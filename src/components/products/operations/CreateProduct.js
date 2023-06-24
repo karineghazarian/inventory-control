@@ -1,29 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from "react";
+import {  useDispatch } from 'react-redux'
 import { Button, Modal, Input } from "../../ui-kit";
-import { editProduct } from '../../../redux/products/productsSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { createProduct } from '../../../redux/products/productsSlice';
 
 const initialProductState = {
     name: '',
     price: 0,
     quantity: 0
 }
-const EditProduct = ({id})=> {
-    const products = useSelector((state) => state.products.value);
+
+const CreateProduct = () => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const [product, setProduct] = useState(initialProductState);
-
-    useEffect(()=> {
-        if(isOpen && id)
-        {
-            const currentProduct = products.find((product)=> product.id === id);
-            if(currentProduct) 
-            {
-                setProduct(currentProduct);
-            } 
-        };
-    }, [id, products, isOpen])
 
     const handleProductChange = (type, value) => {
         setProduct((prevState) => ({
@@ -33,21 +22,22 @@ const EditProduct = ({id})=> {
     }; 
 
     const handleConfirm = ()=> {
-        if(product.id) {
-            dispatch(editProduct(product));
+        if(product.name) {
+            dispatch(createProduct(product));
+            setProduct(initialProductState);
             setIsOpen(false);
         }
     }
     return (
         <>
-        <Button onClick={() => setIsOpen(true)}>
-            Edit
-        </Button>
-        {isOpen ? (
+            <Button onClick={()=> {setIsOpen(true)}}>
+                Create product
+            </Button>
+            {isOpen ? (
                 <Modal 
                     setIsOpen={setIsOpen} 
-                    title='Edit Product'
-                    confirm='Edit' 
+                    title='Create Product'
+                    confirm='Create' 
                     handleConfirm={handleConfirm}
                 >
                     <div>
@@ -59,21 +49,22 @@ const EditProduct = ({id})=> {
                         <Input 
                             value={product.price} 
                             type='number' 
-                            onChange={(v) => handleProductChange('price', v)} 
+                            onChange={(v) => handleProductChange('price', Number(v))} 
                             label='price'
                         />
                         <Input
                             value={product.quantity} 
                             type='number' 
-                            onChange={(v) => handleProductChange('quantity', v)} 
+                            onChange={(v) => handleProductChange('quantity', Number(v))} 
                             label='quantity'
                         />
                     </div>
                 </Modal>
             ) : null}
         </>
-    );
+    )
 }
 
-EditProduct.displayName = 'EditProduct';
-export default EditProduct;
+CreateProduct.displayName = 'ModCreateProductal'
+
+export default CreateProduct;

@@ -2,6 +2,8 @@ import {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Modal } from "../../ui-kit";
 import { deleteProduct } from '../../../redux/products/productsSlice';
+import { Trash } from 'tabler-icons-react';
+import styles from './operations.module.css'
 
 const DeleteProduct = ({id})=> {
     const dispatch = useDispatch();
@@ -15,9 +17,13 @@ const DeleteProduct = ({id})=> {
     }
     return (
         <>
-        <Button onClick={() => setIsOpen(true)}>
-            Delete
-        </Button>
+        <Trash
+            size={26}
+            strokeWidth={2}
+            color={'#79a1d2'}
+            onClick={() => setIsOpen(true)}
+            className={styles.actionIcon}
+        />
         {isOpen ? (
                 <Modal 
                     setIsOpen={setIsOpen} 

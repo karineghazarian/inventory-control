@@ -1,18 +1,31 @@
-import { useState } from "react";
-import {  useDispatch } from 'react-redux'
-import { Button, Modal, Input } from "../ui-kit";
-import { createProduct } from '../../redux/products/productsSlice';
+import { useEffect, useState } from 'react';
+import { Button, Modal, Input } from "../../ui-kit";
+import { editProduct } from '../../../redux/products/productsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Edit } from 'tabler-icons-react';
+import styles from './operations.module.css'
 
 const initialProductState = {
     name: '',
     price: 0,
     quantity: 0
 }
-
-const CreateProduct = () => {
+const EditProduct = ({id})=> {
+    const products = useSelector((state) => state.products.value);
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const [product, setProduct] = useState(initialProductState);
+
+    useEffect(()=> {
+        if(isOpen && id)
+        {
+            const currentProduct = products.find((product)=> product.id === id);
+            if(currentProduct) 
+            {
+                setProduct(currentProduct);
+            } 
+        };
+    }, [id, products, isOpen])
 
     const handleProductChange = (type, value) => {
         setProduct((prevState) => ({
@@ -22,22 +35,25 @@ const CreateProduct = () => {
     }; 
 
     const handleConfirm = ()=> {
-        if(product.name) {
-            dispatch(createProduct(product));
-            setProduct(initialProductState);
+        if(product.id) {
+            dispatch(editProduct(product));
             setIsOpen(false);
         }
     }
     return (
         <>
-            <Button onClick={()=> {setIsOpen(true)}}>
-                Create
-            </Button>
-            {isOpen ? (
+        <Edit
+            size={26}
+            strokeWidth={2}
+            color={'#79a1d2'}
+            onClick={() => setIsOpen(true)}
+            className={styles.actionIcon}
+        />
+        {isOpen ? (
                 <Modal 
                     setIsOpen={setIsOpen} 
-                    title='Create Product'
-                    confirm='Create' 
+                    title='Edit Product'
+                    confirm='Edit' 
                     handleConfirm={handleConfirm}
                 >
                     <div>
@@ -49,22 +65,21 @@ const CreateProduct = () => {
                         <Input 
                             value={product.price} 
                             type='number' 
-                            onChange={(v) => handleProductChange('price', Number(v))} 
+                            onChange={(v) => handleProductChange('price', v)} 
                             label='price'
                         />
                         <Input
                             value={product.quantity} 
                             type='number' 
-                            onChange={(v) => handleProductChange('quantity', Number(v))} 
+                            onChange={(v) => handleProductChange('quantity', v)} 
                             label='quantity'
                         />
                     </div>
                 </Modal>
             ) : null}
         </>
-    )
+    );
 }
 
-CreateProduct.displayName = 'ModCreateProductal'
-
-export default CreateProduct;
+EditProduct.displayName = 'EditProduct';
+export default EditProduct;

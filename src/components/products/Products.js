@@ -1,9 +1,10 @@
 import {Table} from '../ui-kit';
-import EditProduct from '../product/actions/EditProduct';
-import DeleteProduct from '../product/actions/DeleteProduct';
+import EditProduct from './operations/EditProduct';
+import DeleteProduct from './operations/DeleteProduct';
 import { useSelector } from 'react-redux';
 import { useCallback, useEffect, useState } from 'react';
 import {Input, RangeSlider} from '../ui-kit';
+import styles from "./Product.module.css"; 
 
 const Products = ()=> {
     const products = useSelector((state)=> state.products.value);
@@ -13,8 +14,8 @@ const Products = ()=> {
     const [filterQuantity, setFilterQuantity] = useState(null);
 
     const [processedData, setProcessedData]= useState([]);
-    const filter = useCallback((data)=> {
 
+    const filter = useCallback((data)=> {
         const conditionFuncs = [];
         
         if(filterName !== null) {
@@ -45,21 +46,22 @@ const Products = ()=> {
         return filtered;
     }, [filterName, filterQuantity, filterPrice]);   
 
-    useEffect(()=>{
+    useEffect(()=> {
         const result = filter(products);
         setProcessedData(result);
     }, [products, filter])
 
     return (
         <>
-            <div>
+            <div className={styles.filterContainer}>
                 <Input 
+                    className={styles.nameFilter}
                     onChange={setFilterName}
                     value={filterName}
                     label='filter by name'
                 />
-                <RangeSlider min={0} max={100} step={5} value={filterPrice} onChange={setFilterPrice} label='filter by range'/>
-                <Input onChange={(value) => setFilterQuantity(Number(value))} type='number' value={filterQuantity} label='filter by quantity'/>
+                <RangeSlider className={styles.nameFilter}  min={0} max={100} step={5} value={filterPrice} onChange={setFilterPrice} label='filter by range'/>
+                <Input className={styles.nameFilter} onChange={(value) => setFilterQuantity(Number(value))} type='number' value={filterQuantity} label='filter by quantity'/>
              </div>
             <Table columns={['name', 'price', 'quantity', 'actions']} rows={processedData.map(product => ({
                 ...product,

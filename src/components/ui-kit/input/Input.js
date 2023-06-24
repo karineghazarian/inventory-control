@@ -27,7 +27,7 @@ const Input = (props)=> {
     }, [props.value])
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${props.className || ''}`}>
             {
                 props.label ? (
                     <label className={styles.label}>{props.label}</label>

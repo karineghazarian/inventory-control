@@ -1,5 +1,5 @@
-import CreateProduct from "./components/product/CreateProduct";
-import Products from "./components/product/Products";
+import CreateProduct from "./components/products/operations/CreateProduct";
+import Products from "./components/products/Products";
 
 function App() {
   return (

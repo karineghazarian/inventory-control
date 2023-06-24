@@ -18,9 +18,6 @@ const Modal = ({ setIsOpen, title='title', message='', confirm='Ok', handleConfi
             <div className={styles.modalHeader}>
               <h5 className={styles.heading}>{title}</h5>
             </div>
-            <Button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
-              X
-            </Button>
             { message ? (
               <div className={styles.modalContent}>
                 {message}

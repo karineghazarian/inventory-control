@@ -1,10 +1,9 @@
  .wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 40px calc(16px / 2);
-    padding-top: 1.6rem;
-    height: calc(16px + 1.6rem);
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 6px 8px;
+  padding-top: 0.6rem;
   }
   
   .inputWrapper {
@@ -66,7 +65,7 @@
   .innerRail {
     position: absolute;
     height: 100%;
-    background: hotpink;
+    background: rgb(106, 152, 188);
     opacity: 0.5;
   }
   
@@ -75,9 +74,15 @@
     height: 16px;
     border-radius: 50%;
     position: absolute;
-    background: hotpink;
+    background: rgb(114, 113, 113);
     top: 50%;
     margin-left: calc(16px / -2);
     transform: translate3d(0, -50%, 0);
     z-index: 2;
+  }
+
+  .label {
+    margin-bottom: 2rem;
+    font-size: 14px;
+    color: gray;
   }
