@@ -49,13 +49,13 @@ const CreateProduct = () => {
                         <Input 
                             value={product.price} 
                             type='number' 
-                            onChange={(v) => handleProductChange('price', v)} 
+                            onChange={(v) => handleProductChange('price', Number(v))} 
                             label='price'
                         />
                         <Input
                             value={product.quantity} 
                             type='number' 
-                            onChange={(v) => handleProductChange('quantity', v)} 
+                            onChange={(v) => handleProductChange('quantity', Number(v))} 
                             label='quantity'
                         />
                     </div>

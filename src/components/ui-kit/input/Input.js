@@ -5,17 +5,27 @@ const Input = (props)=> {
     const [value, setValue] = useState(props.value);
 
     const onChange = (e)=> {
-        setValue(e.target.value);
-        if(typeof props.onChange === 'function')
+        if(e.target)
         {
-            props.onChange(e.target.value)
+            setValue(e.target.value);
+            if(typeof props.onChange === 'function')
+            {
+                props.onChange(e.target.value)
+            }
         }
     };
 
     useEffect(() => {
-        setValue(props.value);
+        setValue((prevState)=> {
+            if(props.value !== prevState)
+            {
+                return props.value;
+            } else {
+                return prevState;
+            }
+        });
     }, [props.value])
-    
+
     return (
         <div className={styles.container}>
             {
@@ -23,7 +33,7 @@ const Input = (props)=> {
                     <label className={styles.label}>{props.label}</label>
                 ) : null
             }
-            <input value={value} onChange={onChange} type={props.type}/>
+            <input value={value === null ? (props.type === 'number' ? 0 : '') : value} onChange={onChange} type={props.type}/>
         </div>
     );
 };
