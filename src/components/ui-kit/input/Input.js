@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Input.module.css";
 
 const Input = (props)=> {
@@ -11,6 +11,11 @@ const Input = (props)=> {
             props.onChange(e.target.value)
         }
     };
+
+    useEffect(() => {
+        setValue(props.value);
+    }, [props.value])
+    
     return (
         <div className={styles.container}>
             {

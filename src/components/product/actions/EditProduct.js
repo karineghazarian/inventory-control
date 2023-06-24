@@ -1,18 +1,29 @@
-import { useState } from "react";
-import {  useDispatch } from 'react-redux'
-import { Button, Modal, Input } from "../ui-kit";
-import { createProduct } from '../../redux/products/productsSlice';
+import { useEffect, useState } from 'react';
+import { Button, Modal, Input } from "../../ui-kit";
+import { editProduct } from '../../../redux/products/productsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const initialProductState = {
     name: '',
     price: 0,
     quantity: 0
 }
-
-const CreateProduct = () => {
+const EditProduct = ({id})=> {
+    const products = useSelector((state) => state.products.value);
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const [product, setProduct] = useState(initialProductState);
+
+    useEffect(()=> {
+        if(isOpen && id)
+        {
+            const currentProduct = products.find((product)=> product.id === id);
+            if(currentProduct) 
+            {
+                setProduct(currentProduct);
+            } 
+        };
+    }, [id, products, isOpen])
 
     const handleProductChange = (type, value) => {
         setProduct((prevState) => ({
@@ -22,22 +33,21 @@ const CreateProduct = () => {
     }; 
 
     const handleConfirm = ()=> {
-        if(product.name) {
-            dispatch(createProduct(product));
-            setProduct(initialProductState);
+        if(product.id) {
+            dispatch(editProduct(product));
             setIsOpen(false);
         }
     }
     return (
         <>
-            <Button onClick={()=> {setIsOpen(true)}}>
-                Create
-            </Button>
-            {isOpen ? (
+        <Button onClick={() => setIsOpen(true)}>
+            Edit
+        </Button>
+        {isOpen ? (
                 <Modal 
                     setIsOpen={setIsOpen} 
-                    title='Create Product'
-                    confirm='Create' 
+                    title='Edit Product'
+                    confirm='Edit' 
                     handleConfirm={handleConfirm}
                 >
                     <div>
@@ -62,9 +72,8 @@ const CreateProduct = () => {
                 </Modal>
             ) : null}
         </>
-    )
+    );
 }
 
-CreateProduct.displayName = 'ModCreateProductal'
-
-export default CreateProduct;
+EditProduct.displayName = 'EditProduct';
+export default EditProduct;
