@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Modal, Input } from "../../ui-kit";
+import { Modal, Input } from "../../ui-kit";
 import { editProduct } from '../../../redux/products/productsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Edit } from 'tabler-icons-react';

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Modal } from "../../ui-kit";
+import { Modal } from "../../ui-kit";
 import { deleteProduct } from '../../../redux/products/productsSlice';
 import { Trash } from 'tabler-icons-react';
 import styles from './operations.module.css'
