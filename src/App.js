@@ -2,6 +2,7 @@ import CreateProduct from "./components/product/CreateProduct";
 import Table from "./components/ui-kit/table/Table";
 import { useSelector } from 'react-redux';
 import EditProduct from "./components/product/actions/EditProduct";
+import DeleteProduct from "./components/product/actions/DeleteProduct";
 
 function App() {
   const products = useSelector((state)=> state.products.value);
@@ -14,6 +15,7 @@ function App() {
         'actions': (id) => 
         <>
           <EditProduct id={id}/>
+          <DeleteProduct id={id}/>
           </>
       }))}/>
     </div>

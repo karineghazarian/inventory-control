@@ -23,9 +23,13 @@ export const productsSlice = createSlice({
         };
       }
     },
+    deleteProduct: (state, action) => {
+      const stateValue = current(state.value);
+      state.value = stateValue.filter((product)=> product.id !== action.payload);    
+    }
   },
 })
 
-export const { createProduct, getProductById, editProduct } = productsSlice.actions
+export const { createProduct, getProductById, editProduct, deleteProduct } = productsSlice.actions
 
 export default productsSlice.reducer
