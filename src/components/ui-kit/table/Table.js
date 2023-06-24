@@ -20,9 +20,9 @@ const Table = ({columns=[], rows=[]}) => {
                         columns.map(column => {
                             const cellValue = row[column];
                             if(typeof cellValue === 'function') {
-                                return <td key={`row-${row.id}-${column}`}>{cellValue(row.id)}</td>;
+                                return <td key={`row-${row.id}-${column}`} className={styles.td}>{cellValue(row.id)}</td>;
                             }
-                            return <td key={`row-${row.id}-${column}`}>{cellValue}</td>;
+                            return <td key={`row-${row.id}-${column}`} className={styles.td}>{cellValue}</td>;
                         })
                     }
                 </tr>
