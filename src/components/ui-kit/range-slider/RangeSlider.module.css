@@ -86,3 +86,17 @@
     font-size: 14px;
     color: gray;
   }
+
+  .leftValue {
+    margin-top: 14px;
+    float: left;
+    font-size: 12px;
+    color: gray;
+  }
+
+  .rightValue {
+    margin-top: 14px;
+    float: right;;
+    font-size: 12px;
+    color: gray;
+  }

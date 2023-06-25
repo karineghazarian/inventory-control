@@ -60,7 +60,7 @@ const Products = ()=> {
                     value={filterName}
                     label='filter by name'
                 />
-                <RangeSlider className={styles.nameFilter}  min={0} max={100} step={5} value={filterPrice} onChange={setFilterPrice} label='filter by range'/>
+                <RangeSlider className={styles.nameFilter}  min={0} max={100} step={5} value={filterPrice} onChange={setFilterPrice} label='filter by price'/>
                 <Input className={styles.nameFilter} onChange={(value) => setFilterQuantity(Number(value))} type='number' value={filterQuantity} label='filter by quantity'/>
              </div>
             <Table columns={['name', 'price', 'quantity', 'actions']} rows={processedData.map(product => ({

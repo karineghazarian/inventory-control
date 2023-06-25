@@ -57,6 +57,7 @@ const RangeSlider = ({ min, max, value, step, onChange, label, className }) => {
 
       <div  className={styles.controlWrapper}>
         <div className={styles.control} style={{ left: `${minPos}%` }} />
+        <span className={styles.leftValue}>{minValue}</span>
         <div className={styles.rail}>
           <div
             className={styles.innerRail} 
@@ -64,6 +65,7 @@ const RangeSlider = ({ min, max, value, step, onChange, label, className }) => {
           />
         </div>
         <div className={styles.control} style={{ left: `${maxPos}%` }} />
+        <span className={styles.rightValue}>{maxValue}</span>
       </div>
     </div>
   );

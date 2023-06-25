@@ -1,7 +1,7 @@
 import styles from "./Modal.module.css";
 import { Button } from "..";
 
-const Modal = ({ setIsOpen, title='title', message='', confirm='Ok', handleConfirm, children }) => {
+const Modal = ({ setIsOpen, title='title', message='', confirm='Ok', handleConfirm, confirmIsDisabled=false, children }) => {
 
     const onConfirm = () => {
         if(typeof handleConfirm === 'function')
@@ -26,7 +26,7 @@ const Modal = ({ setIsOpen, title='title', message='', confirm='Ok', handleConfi
             {children}
             <div className={styles.modalActions}>
               <div className={styles.actionsContainer}>
-                <Button className={styles.deleteBtn} onClick={onConfirm}>
+                <Button className={styles.deleteBtn} onClick={onConfirm} disabled={confirmIsDisabled}>
                   {confirm}
                 </Button>
                 <Button
