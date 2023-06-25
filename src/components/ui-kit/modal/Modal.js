@@ -43,5 +43,6 @@ const Modal = ({ setIsOpen, title='title', message='', confirm='Ok', handleConfi
     );
   };
 
-Modal.displayName = 'Modal'
+Modal.displayName = 'Modal';
+
 export default Modal;

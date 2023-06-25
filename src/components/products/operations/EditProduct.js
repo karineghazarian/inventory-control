@@ -31,6 +31,12 @@ const EditProduct = ({id})=> {
         };
     }, [id, products, isOpen])
 
+    useEffect(() => {
+        if(!isOpen) {
+            setErrors({});
+        }
+    }, [isOpen])
+
     const handleProductChange = (type, value) => {
         const changedProduct = {
             ...product,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {  useDispatch } from 'react-redux'
 import { Button, Modal, Input } from "../../ui-kit";
 import { createProduct } from '../../../redux/products/productsSlice';
@@ -42,9 +42,15 @@ const CreateProduct = () => {
         };
     };
 
+    useEffect(() => {
+        if(!isOpen) {
+            setErrors({});
+        }
+    }, [isOpen])
+
     return (
         <>
-            <Button onClick={()=> {setIsOpen(true)}}>
+            <Button onClick={()=> setIsOpen(true)}>
                 Create product
             </Button>
             {isOpen ? (

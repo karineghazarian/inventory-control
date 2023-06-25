@@ -17,3 +17,14 @@
 .quantityFilter {
     width: 200px;
 }
+
+.headerCell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sortIcon {
+    margin-left: 1rem;
+    cursor: pointer;
+}

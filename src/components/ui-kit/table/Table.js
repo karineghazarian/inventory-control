@@ -7,7 +7,12 @@ const Table = ({columns=[], rows=[]}) => {
             <tr className={styles.tr}>
                 {
                     columns.map(column => (
-                        <th key={column} className={styles.th}>{column}</th>
+                        <th key={column.id} className={styles.th}>
+                            {
+                                typeof column.renderer  === 'function' ? 
+                                column.renderer() : column.id
+                            }
+                        </th>
                     ))
                 }
             </tr>
@@ -18,11 +23,11 @@ const Table = ({columns=[], rows=[]}) => {
                 <tr key={row.id} className={styles.tr}>
                     {
                         columns.map(column => {
-                            const cellValue = row[column];
+                            const cellValue = row[column.id];
                             if(typeof cellValue === 'function') {
-                                return <td key={`row-${row.id}-${column}`} className={styles.td}>{cellValue(row.id)}</td>;
+                                return <td key={`row-${row.id}-${column.id}`} className={styles.td}>{cellValue(row.id)}</td>;
                             }
-                            return <td key={`row-${row.id}-${column}`} className={styles.td}>{cellValue}</td>;
+                            return <td key={`row-${row.id}-${column.id}`} className={styles.td}>{cellValue}</td>;
                         })
                     }
                 </tr>
