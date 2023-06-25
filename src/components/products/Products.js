@@ -8,17 +8,7 @@ import styles from "./Product.module.css";
 import { PRODUCT_TYPES } from './config'; 
 import { SortAscending, SortDescending } from 'tabler-icons-react';
 import _ from 'lodash-es';
-
-
-const SORT_ORDER = {
-    ASC: 'asc',
-    DESC: 'desc'
-}
-
-const initialSortingState = {
-    fields: [PRODUCT_TYPES.NAME, PRODUCT_TYPES.PRICE, PRODUCT_TYPES.QUANTITY],
-    orders: [SORT_ORDER.ASC, SORT_ORDER.ASC, SORT_ORDER.ASC],
-}
+import { initialSortingState, SORT_ORDER } from './config';
 
 const Products = ()=> {
     const products = useSelector((state)=> state.products.value);
