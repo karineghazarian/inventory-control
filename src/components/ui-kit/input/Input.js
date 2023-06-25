@@ -33,7 +33,7 @@ const Input = (props)=> {
                     <label className={styles.label}>{props.label}</label>
                 ) : null
             }
-            <input value={value} onChange={onChange} type={props.type}/>
+            <input value={value} onChange={onChange} type={props.type} className={styles.input}/>
         </div>
     );
 };

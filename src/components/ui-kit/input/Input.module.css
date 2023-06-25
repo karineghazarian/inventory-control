@@ -7,3 +7,9 @@
     color: gray;
     font-size: 14px;
 }
+
+.input {
+    height: 1.5rem;
+    border: solid 0.5px gray;    
+    border-radius: 2px;
+}
